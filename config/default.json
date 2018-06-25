@@ -1,0 +1,8 @@
+{
+  "name": "portainer-backup-restore",
+  "portainer": {
+    "url": "",
+    "login": "",
+    "password": ""
+  }
+}
