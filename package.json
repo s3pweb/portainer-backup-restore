@@ -21,5 +21,8 @@
     "axios": "^0.18.0",
     "bunyan": "^1.8.12",
     "config": "^1.30.0"
+  },
+  "devDependencies": {
+    "standard": "^11.0.1"
   }
 }
