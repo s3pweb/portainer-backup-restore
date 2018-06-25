@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
+    "start": "NODE_ENV=dev node . | bunyan",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
