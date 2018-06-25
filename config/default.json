@@ -4,5 +4,6 @@
     "url": "",
     "login": "",
     "password": ""
-  }
+  },
+  "consoleLogLevel": "trace"
 }
