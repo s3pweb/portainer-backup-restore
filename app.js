@@ -8,20 +8,24 @@ let filename = 'backup.json'
 async function main () {
   log.info('Starting app')
 
+  // Log in and get JWT token from portainer
   let jwt = await portainer.auth()
   log.info(`Logged in`)
 
+  // Get all stacks from portainer
   let stacks = await portainer.getStacks(jwt)
   log.info(`Found ${stacks.length} stack(s).`)
 
   let backup = []
 
+  // For each stack, get it's stackfime
   for (let stack of stacks) {
     let stackFile = await portainer.getStackFile(jwt, stack.Id)
     backup.push({id: stack.Id, StackFileContent: stackFile.StackFileContent})
     log.info(`Found stack file for ${stack.Id}.`)
   }
 
+  // Write the backup to the file system
   fs.writeFile(filename, JSON.stringify(backup, null, 2), function (err) {
     if (err) {
       throw err
