@@ -21,7 +21,11 @@ async function main () {
   // For each stack, get it's stackfime
   for (let stack of stacks) {
     let stackFile = await portainer.getStackFile(jwt, stack.Id)
-    backup.push({id: stack.Id, StackFileContent: stackFile.StackFileContent})
+    backup.push({
+      Name: stack.Name,
+      SwarmID: stack.SwarmId,
+      StackFileContent: stackFile.StackFileContent
+    })
     log.info(`Found stack file for ${stack.Id}.`)
   }
 
