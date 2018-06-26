@@ -9,7 +9,7 @@ async function main () {
   log.info('Starting app')
 
   // Log in and get JWT token from portainer
-  let jwt = await portainer.auth()
+  let jwt = await portainer.login()
   log.info(`Logged in`)
 
   // Get all stacks from portainer and save them to a json file
