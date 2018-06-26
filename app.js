@@ -12,6 +12,11 @@ async function main () {
   let jwt = await portainer.auth()
   log.info(`Logged in`)
 
+  // Get all stacks from portainer and save them to a json file
+  await backupStacks(jwt)
+}
+
+async function backupStacks (jwt) {
   // Get all stacks from portainer
   let stacks = await portainer.getStacks(jwt)
   log.info(`Found ${stacks.length} stack(s).`)
