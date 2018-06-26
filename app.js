@@ -14,6 +14,8 @@ async function main () {
 
   // Get all stacks from portainer and save them to a json file
   await backupStacks(jwt)
+
+  await restoreStacks(jwt)
 }
 
 async function backupStacks (jwt) {
@@ -35,11 +37,42 @@ async function backupStacks (jwt) {
   }
 
   // Write the backup to the file system
-  fs.writeFile(filename, JSON.stringify(backup, null, 2), function (err) {
-    if (err) {
-      throw err
-    }
-    log.info(`Saved ${backup.length} stack(s) to ${filename}`)
+  return new Promise((resolve, reject) => {
+    fs.writeFile(filename, JSON.stringify(backup, null, 2), function (err) {
+      if (err) {
+        reject(err)
+      }
+      log.info(`Saved ${backup.length} stack(s) to ${filename}`)
+      resolve()
+    })
+  })
+}
+
+async function restoreStacks (jwt) {
+  let data = await readFromBackupFile(filename)
+
+  let backupStacks = JSON.parse(data)
+  log.info(`Found ${backupStacks.length} stack(s) in ${filename}`)
+
+  for (let stack of backupStacks) {
+    let stackId = stack.Name + '_' + stack.SwarmID
+    log.info(`Updating stack ${stackId}`)
+    let data = await portainer.updateStack(jwt, stackId, stack)
+    log.info(`Updated stack: ${data}`)
+
+    // let data = await portainer.createStack(jwt, stack)
+    // log.info({response: data}, `Created stack`)
+  }
+}
+
+function readFromBackupFile (filename) {
+  return new Promise((resolve, reject) => {
+    fs.readFile(filename, 'utf8', function (err, data) {
+      if (err) {
+        reject(err)
+      }
+      resolve(data)
+    })
   })
 }
 
