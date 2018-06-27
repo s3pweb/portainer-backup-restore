@@ -15,7 +15,7 @@ async function main () {
   // Get all stacks from portainer and save them to a json file
   await backupStacks(jwt)
 
-  await restoreStacks(jwt)
+  await updateStacks(jwt)
 }
 
 async function backupStacks (jwt) {
@@ -48,7 +48,7 @@ async function backupStacks (jwt) {
   })
 }
 
-async function restoreStacks (jwt) {
+async function updateStacks (jwt) {
   let data = await readFromBackupFile(filename)
 
   let backupStacks = JSON.parse(data)
@@ -59,9 +59,6 @@ async function restoreStacks (jwt) {
     log.info(`Updating stack ${stackId}`)
     let data = await portainer.updateStack(jwt, stackId, stack)
     log.info(`Updated stack: ${data}`)
-
-    // let data = await portainer.createStack(jwt, stack)
-    // log.info({response: data}, `Created stack`)
   }
 }
 
