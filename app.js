@@ -6,16 +6,18 @@ const portainer = require('./lib/portainer/portainer.utils')
 let filename = 'backup.json'
 
 async function main () {
-  log.info('Starting app')
+  log.debug('Starting app')
 
   // Log in and get JWT token from portainer
   let jwt = await portainer.login()
-  log.info(`Logged in`)
+  log.info({jwt: jwt}, `Logged in`)
 
   // Get all stacks from portainer and save them to a json file
   await backupStacks(jwt)
 
-  await updateStacks(jwt)
+  // await updateStacks(jwt)
+
+  await removeAndCreateStacks(jwt)
 }
 
 async function backupStacks (jwt) {
@@ -56,9 +58,27 @@ async function updateStacks (jwt) {
 
   for (let stack of backupStacks) {
     let stackId = stack.Name + '_' + stack.SwarmID
-    log.info(`Updating stack ${stackId}`)
+    log.debug(`Updating stack ${stackId}`)
     let data = await portainer.updateStack(jwt, stackId, stack)
-    log.info(`Updated stack: ${data}`)
+    log.info({data: data}, `Updated stack ${stackId}`)
+  }
+}
+
+async function removeAndCreateStacks (jwt) {
+  let data = await readFromBackupFile(filename)
+
+  let backupStacks = JSON.parse(data)
+  log.info(`Found ${backupStacks.length} stack(s) in ${filename}`)
+
+  for (let stack of backupStacks) {
+    let stackId = stack.Name + '_' + stack.SwarmID
+    log.debug(`Removing stack ${stackId}`)
+    let removeResponse = await portainer.removeStack(jwt, stackId)
+    log.info({data: removeResponse}, `Removed stack ${stackId}`)
+
+    log.debug(`Creating stack ${stackId}`)
+    let createResponse = await portainer.createStack(jwt, stack)
+    log.info({data: createResponse}, `Created stack ${stackId}`)
   }
 }
 
