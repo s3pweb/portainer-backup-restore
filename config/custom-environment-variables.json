@@ -3,5 +3,6 @@
     "url": "PORTAINER_URL",
     "login": "PORTAINER_LOGIN",
     "password": "PORTAINER_PASSWORD"
-  }
+  },
+  "backupFile": "BACKUP_FILE"
 }

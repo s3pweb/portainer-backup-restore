@@ -1,9 +1,10 @@
 const fs = require('fs')
+const config = require('config')
 
 const log = require('./lib/logger/logger')('Main')
 const portainer = require('./lib/portainer/portainer.utils')
 
-let filename = 'backup.json'
+let filename = config.backupFile
 
 async function main () {
   log.debug('Starting app')
