@@ -1,0 +1,3 @@
+{
+  "StackFileContent": "version: 3\n services:\n hello-world:\n image:hello-world"
+}

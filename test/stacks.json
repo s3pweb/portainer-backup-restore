@@ -1,0 +1,36 @@
+[
+  {
+    "Id": "nginx_jpofkc0i9uo9wtx1zesuk649w",
+    "Name": "nginx",
+    "SwarmID": "jpofkc0i9uo9wtx1zesuk649w",
+    "EntryPoint": "docker-compose.yml",
+    "ProjectPath": "/data/compose/nginx_jpofkc0i9uo9wtx1zesuk649w",
+    "Env": null,
+    "ResourceControl": {
+      "Id": 0,
+      "ResourceId": "",
+      "SubResourceIds": null,
+      "Type": 0,
+      "AdministratorsOnly": false,
+      "UserAccesses": null,
+      "TeamAccesses": null
+    }
+  },
+  {
+    "Id": "HelloWorld_jpofkc0i9uo9wtx1zesuk649w",
+    "Name": "HelloWorld",
+    "SwarmID": "jpofkc0i9uo9wtx1zesuk649w",
+    "EntryPoint": "docker-compose.yml",
+    "ProjectPath": "/data/compose/HelloWorld_jpofkc0i9uo9wtx1zesuk649w",
+    "Env": null,
+    "ResourceControl": {
+      "Id": 0,
+      "ResourceId": "",
+      "SubResourceIds": null,
+      "Type": 0,
+      "AdministratorsOnly": false,
+      "UserAccesses": null,
+      "TeamAccesses": null
+    }
+  }
+]

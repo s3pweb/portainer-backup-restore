@@ -1,0 +1,7 @@
+{
+  "portainer": {
+    "url": "http://localhost:3333",
+    "login": "login",
+    "password": "password"
+  }
+}
