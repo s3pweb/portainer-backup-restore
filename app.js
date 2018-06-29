@@ -3,6 +3,7 @@ const config = require('config')
 
 const log = require('./lib/logger/logger')('Main')
 const portainer = require('./lib/portainer/portainer.utils')
+const bf = require('./lib/fs/backupFiles.utils')
 
 let filename = config.backupFile
 
@@ -52,7 +53,7 @@ async function backupStacks (jwt) {
 }
 
 async function updateStacks (jwt) {
-  let data = await readFromBackupFile(filename)
+  let data = await bf.readFromBackupFile(filename)
 
   let backupStacks = JSON.parse(data)
   log.info(`Found ${backupStacks.length} stack(s) in ${filename}`)
@@ -66,7 +67,7 @@ async function updateStacks (jwt) {
 }
 
 async function removeAndCreateStacks (jwt) {
-  let data = await readFromBackupFile(filename)
+  let data = await bf.readFromBackupFile(filename)
 
   let backupStacks = JSON.parse(data)
   log.info(`Found ${backupStacks.length} stack(s) in ${filename}`)
@@ -81,17 +82,6 @@ async function removeAndCreateStacks (jwt) {
     let createResponse = await portainer.createStack(jwt, stack)
     log.info({data: createResponse}, `Created stack ${stackId}`)
   }
-}
-
-function readFromBackupFile (filename) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filename, 'utf8', function (err, data) {
-      if (err) {
-        reject(err)
-      }
-      resolve(data)
-    })
-  })
 }
 
 main()

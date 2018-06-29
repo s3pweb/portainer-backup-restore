@@ -1,24 +1,15 @@
+const path = require('path')
 const express = require('express')
 const app = express()
-const fs = require('fs')
 
-function readFromBackupFile (filename) {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filename, 'utf8', function (err, data) {
-      if (err) {
-        reject(err)
-      }
-      resolve(data)
-    })
-  })
-}
+const bf = require('../lib/fs/backupFiles.utils')
 
 let stacks
 let stackfile
 
 async function loadDatas () {
-  stacks = JSON.parse(await readFromBackupFile(__dirname + '/stacks.json'))
-  stackfile = JSON.parse(await readFromBackupFile(__dirname + '/stackfile.json'))
+  stacks = JSON.parse(await bf.readFromBackupFile(path.join(__dirname, '/stacks.json')))
+  stackfile = JSON.parse(await bf.readFromBackupFile(path.join(__dirname, '/stackfile.json')))
 }
 
 // Add custom routes before JSON Server router
@@ -41,7 +32,7 @@ exports.before = async t => {
   await loadDatas()
 
   t.context.server = await app.listen(3333, () => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve()
     })
   })
