@@ -8,8 +8,8 @@ let stacks
 let stackfile
 
 async function loadDatas () {
-  stacks = JSON.parse(await bf.readFromBackupFile(path.join(__dirname, '/stacks.json')))
-  stackfile = JSON.parse(await bf.readFromBackupFile(path.join(__dirname, '/stackfile.json')))
+  stacks = JSON.parse(await bf.readFromBackupFile(path.join(__dirname, '/data/stacks.json')))
+  stackfile = JSON.parse(await bf.readFromBackupFile(path.join(__dirname, '/data/stackfile.json')))
 }
 
 // Add custom routes before JSON Server router
