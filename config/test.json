@@ -3,5 +3,7 @@
     "url": "http://localhost:3333",
     "login": "login",
     "password": "password"
-  }
+  },
+  "consoleLogLevel": "error",
+  "backupFile": "tests-stacks-backup.json"
 }
