@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mualig/portainer-backup-restore.git"
+    "url": "git@github.com:s3pweb/portainer-backup-restore.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Mualig/portainer-backup-restore/issues"
+    "url": "https://github.com/s3pweb/portainer-backup-restore/issues"
   },
-  "homepage": "https://github.com/Mualig/portainer-backup-restore#readme",
+  "homepage": "https://github.com/s3pweb/portainer-backup-restore#readme",
   "dependencies": {
     "axios": "^0.18.0",
     "bunyan": "^1.8.12",
