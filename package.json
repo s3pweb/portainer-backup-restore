@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=dev node . | bunyan",
-    "test": "ava --verbose --serial"
+    "test": "NODE_ENV=test ava --verbose --serial"
   },
   "repository": {
     "type": "git",
