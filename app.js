@@ -38,7 +38,7 @@ const argv = yargs
   .argv
 
 async function main () {
-  log.debug({yargs: argv}, 'Starting app')
+  log.debug('Starting app')
 
   // Log in and get JWT token from portainer
   let jwt = await stacks.login(argv.url, argv.login, argv.password)
@@ -59,5 +59,9 @@ async function main () {
 
 main()
   .catch((err) => {
-    log.error({err: err}, `Error`)
+    if (err.response && err.response.data) {
+      log.error({err: err}, `Http error: ${err.response.data.err}`)
+    } else {
+      log.error({err: err}, `Application error.`)
+    }
   })
