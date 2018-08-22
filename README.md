@@ -2,7 +2,9 @@
 
 ## Introduction
 
-This node app backup and restore your Portainer stacks
+This node app backup and restore your Portainer stacks.
+
+Current portainer API supported is 1.19.1
 
 ## Installation
 
@@ -10,11 +12,23 @@ This node app backup and restore your Portainer stacks
 
 ## Usage
 
-    $ PORTAINER_URL=<url> PORTAINER_LOGIN=<login> PORTAINER_PASSWORD=<pass> node .
+### Backup
 
-Or you can set those variables in the config folder and then start with:
+This command will create (or replace) a file named `stacks-backup.json` where all stacks with `Total` control from portainer will be saved.
+A backup file is mandatory to restore stacks, but it can be created by hand if you follow the backup format.
 
-    $ node .
+
+    $ node . backup --url <URL> --login <LOGIN> --password <PWD>
+
+### Restore
+
+This command will UPDATE the stacks on portainer.
+
+    $ node . update --url <URL> --login <LOGIN> --password <PWD>
+
+This command will REMOVE then CREATE the stacks on portainer.
+
+    $ node . create --url <URL> --login <LOGIN> --password <PWD>
 
 ## Backup format
 
