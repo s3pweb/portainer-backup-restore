@@ -1,7 +1,7 @@
 {
-  "name": "portainer-backup-restore",
+  "name": "@s3pweb/portainer-backup-restore",
   "version": "1.1.0",
-  "description": "",
+  "description": "Backup and restore your stacks from portainer.",
   "main": "app.js",
   "scripts": {
     "start": "NODE_ENV=dev node . | bunyan",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git@github.com:s3pweb/portainer-backup-restore.git"
   },
-  "author": "",
+  "author": "S3pweb",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/s3pweb/portainer-backup-restore/issues"
